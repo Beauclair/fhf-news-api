@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "9ee173dc-1e53-44c2-b875-a416c7706a24",
+		"name": "fhf-news-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30873442"
+	},
+	"item": [
+		{
+			"name": "get news by keywords",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}?limit=4&keywords=test&apikey=e9bcbc6e9be84de2682eb68c0f843d71",
+					"host": [
+						"{{url}}"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "4"
+						},
+						{
+							"key": "keywords",
+							"value": "test"
+						},
+						{
+							"key": "apikey",
+							"value": "e9bcbc6e9be84de2682eb68c0f843d71"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get news by title",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/title/moi?apikey=e9bcbc6e9be84de2682eb68c0f843d71",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"title",
+						"moi"
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "e9bcbc6e9be84de2682eb68c0f843d71"
+						},
+						{
+							"key": "limit",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "keywords",
+							"value": "bitcoin",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get news by author",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/author/jeff?apikey=e9bcbc6e9be84de2682eb68c0f843d71",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"author",
+						"jeff"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "keywords",
+							"value": "bitcoin",
+							"disabled": true
+						},
+						{
+							"key": "apikey",
+							"value": "e9bcbc6e9be84de2682eb68c0f843d71"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

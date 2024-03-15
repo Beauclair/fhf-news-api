@@ -1,0 +1,4 @@
+rootProject.name = 'first-help-financial'
+include 'api-rest'
+include 'application'
+include 'core'
