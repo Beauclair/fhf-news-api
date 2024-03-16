@@ -1,4 +1,6 @@
+|Author | Beauclair Nanfack|
 # First Help Financial News API
+|Author | Beauclair Nanfack|
 
 This is a simple REST API framework built with Java and the Spring framework. It interacts with a public news API in this case GNews API to fetch news articles. 
 The API provides endpoints to fetch N news articles, find articles by title or author, and search by keywords. 
@@ -35,24 +37,38 @@ By organizing our project in this manner, we achieve a clear separation of conce
 
    ```bash
    git clone https://github.com/Beauclair/fhf-news-api.git
+   ```
 
 2. Navigate to the project directory:
 
    ```bash
    cd fhf-news-api
+   ```
 
-3. Build the project using Gradle wrapper::
+3. Build the project using Gradle wrapper. 
 
+   - Linux/Mac command line
    ```bash
    ./gradlew clean build
+   ```
+   
+   - Windows command line
+   ```bash
+   .\gradlew clean build
+   ```
 
 ### Running 
 
 1. Run as standalone application 
 
+   - Linux/Mac
    ```bash
    ./gradlew bootRun
-
+   ```
+   - Windows
+   ```bash
+   .\gradlew bootRun
+   ```
 2. Run as container
 
    ```bash

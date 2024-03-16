@@ -21,7 +21,7 @@ public class FirstHelpFinancialNewsService {
     private RestTemplate restTemplate;
 
 
-    @Cacheable(value = "articles", key = "#keywords")
+    @Cacheable(value = "articles", key = "#keywords.concat('-').concat(#limit)")
     public GNewsModel fetchArticlesByKeywords(String apiKey, int limit, String keywords){
         String gNewsRequestUrl = gNewsApiUrl + "?apikey=" + apiKey + "&q=" + keywords + "&max=" + limit;
         logger.debug("Gnews request url " + gNewsRequestUrl);

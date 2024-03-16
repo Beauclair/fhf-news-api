@@ -1,6 +1,7 @@
 package com.interview.apirest.controller;
 
 import com.interview.apirest.adapter.FirstHelpFinancialNewsAdapter;
+import com.interview.apirest.error.ErrorMessage;
 import com.interview.core.model.GNewsModel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -44,7 +45,7 @@ public class Controller {
         try{
             gNewsModelResponse =  firstHelpFinancialNewsAdapter.getArticlesByKeywords(apikey, limit, keywords);
         }catch (HttpClientErrorException e){
-            return new ResponseEntity(e.getStatusText(), e.getStatusCode());
+            return ResponseEntity.badRequest().body(new ErrorMessage(e.getResponseBodyAsString()));
         }
         return ResponseEntity.ok(gNewsModelResponse);
     }
@@ -68,7 +69,7 @@ public class Controller {
         try {
             gNewsModelResponse = firstHelpFinancialNewsAdapter.getArticlesByTitle(apikey, title);
         } catch (HttpClientErrorException e){
-            return new ResponseEntity(e.getStatusText(), e.getStatusCode());
+            return ResponseEntity.badRequest().body(new ErrorMessage(e.getResponseBodyAsString()));
         }
         return ResponseEntity.ok(gNewsModelResponse);
     }
@@ -92,7 +93,7 @@ public class Controller {
         try {
             gNewsModelResponse = firstHelpFinancialNewsAdapter.getArticlesByAuthor(apikey, author);
         } catch (HttpClientErrorException e){
-            return new ResponseEntity(e.getStatusText(), e.getStatusCode());
+            return ResponseEntity.badRequest().body(new ErrorMessage(e.getResponseBodyAsString()));
         }
         return ResponseEntity.ok(gNewsModelResponse);
     }

@@ -30,19 +30,19 @@ public class FirstHelpFinancialNewsAdapter {
 
     private void validateLimit(int limit) {
         if(limit < 1 || limit > 100){
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "limit must be between 1 and 100");
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, null, "limit must be between 1 and 100".getBytes(), null);
         }
     }
 
     private void validateTitle(String title) {
         if(title == null || title.isEmpty()){
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Title must not be null or empty");
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, null, "Title must not be null or empty".getBytes(), null);
         }
     }
 
     private void validateAuthor(String author) {
         if(author == null || author.isEmpty()){
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Author must not be null or empty");
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, null, "Author must not be null or empty".getBytes(), null);
         }
     }
 }
