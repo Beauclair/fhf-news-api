@@ -29,23 +29,119 @@ By organizing our project in this manner, we achieve a clear separation of conce
 - Docker (optional, for running the application as a container)
 - Gradle (used for dependency management) - This project utilizes the Gradle wrapper for managing dependencies.
 
-### Guides
+### Installation (Clone and build)
 
-The following guides illustrate how to use some features concretely:
+1. Clone this repository to your local machine:
 
-* [Producing a SOAP web service](https://spring.io/guides/gs/producing-web-service/)
+   ```bash
+   git clone https://github.com/Beauclair/fhf-news-api.git
 
-### Additional Links
+2. Navigate to the project directory:
 
-These additional references should also help you:
+   ```bash
+   cd fhf-news-api
 
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+3. Build the project using Gradle wrapper::
 
-### Docker Compose support
+   ```bash
+   ./gradlew clean build
 
-This project contains a Docker Compose file named `compose.yaml`.
+### Running 
 
-However, no services were found. As of now, the application won't start!
+1. Run as standalone application 
 
-Please make sure to add at least one service in the `compose.yaml` file.
+   ```bash
+   ./gradlew bootRun
 
+2. Run as container
+
+   ```bash
+   docker build -t fhf-news-api:1.0 .
+   docker run -d -p 8080:8080 -t fhf-news-api:1.0
+
+**Note:** Running both methods simultaneously is not recommended as they utilize the same host port. To resolve this issue easily, adjust the host port in the Docker run command to 8081 and utilize this port during testing.
+Once the application is running, you can access the API endpoints using tools like curl, Postman, or your web browser.
+
+### Testing 
+
+#### Available API Endpoints
+`GET GET /api/v1/news/search` - Retrieves a list of news articles based on the provided keyword | can also be used to retrieve a specific number of article
+`GET /api/v1/news/search/author/{author}` - Retrieves news articles by their authors
+`GET /api/v1/news/search/title/{title}` - Retrieves news articles by their titles
+
+#### sample curl request/response
+``
+curl --location 'http://localhost:8080/api/v1/news/search?limit=4&keywords=tests&apikey=<YOUR_GNEWS_API_KEY>'
+``
+```json
+{
+    "totalArticles": 76736,
+    "articles": [
+        {
+            "title": "Ukraine: Rufe nach Tests von britischer Laserwaffe",
+            "description": "Eine hochmoderne britische Waffe könnte der Ukraine bei der Verteidigung helfen. Jetzt gibt es neue Details zur britischen Laserkanone.",
+            "content": "Erfasst \"alle sichtbaren Ziele\" Hochmoderne Kanone weckt Wünsche in der Ukraine Von t-online , wan 15.03.2024 - 23:08 Uhr Lesedauer: 2 Min. Die \"DragonFire\" ist eine in Großbritannien entwickelte Laserwaffe. Aus der Ukraine kommen Rufe nach einem Ein... [3200 chars]",
+            "url": "https://www.t-online.de/nachrichten/panorama/id_100365626/ukraine-rufe-nach-tests-von-britischer-laserwaffe-.html",
+            "image": "https://images.t-online.de/2024/03/-FWNpHdR5Kes/0x50:960x540/fit-in/1800x0/die-dragonfire-ist-eine-in-grossbritannien-entwickelte-laserwaffe-aus-der-ukraine-kommen-rufe-nach-einem-einsatz-im-kriebsgebiet.jpg",
+            "publishedAt": "2024-03-15T22:08:43Z",
+            "source": {
+                "name": "t-online.de",
+                "url": "https://www.t-online.de"
+            }
+        },
+        {
+            "title": "Autonomes Fahren: Tests auf dem Flugfeld - In Tegel zeigt sich Europas Sonderweg",
+            "description": "Fahrerlose Autos spulen in den USA und China schon Millionen Kilometer pro Jahr im Straßenverkehr ab. Europa gibt sich deutlich vorsichtiger und verzichtet auf derartige Versuche. Dennoch wird auf dem alten Flugfeld in Berlin-Tegel eine neue Welle sichtbar.",
+            "content": "Fahrerlose Autos spulen in den USA und China schon Millionen Kilometer pro Jahr im Straßenverkehr ab. Europa gibt sich deutlich vorsichtiger und verzichtet auf derartige Versuche. Dennoch wird auf dem alten Flugfeld in Berlin-Tegel eine neue Welle si... [6271 chars]",
+            "url": "https://www.welt.de/wirtschaft/article250486484/Autonomes-Fahren-Tests-auf-dem-Flugfeld-In-Tegel-zeigt-sich-Europas-Sonderweg.html",
+            "image": "https://img.welt.de/img/wirtschaft/mobile250487306/3781353097-ci16x9-w1200/Testfahrteug-Motors-AI.jpg",
+            "publishedAt": "2024-03-15T18:25:56Z",
+            "source": {
+                "name": "WELT",
+                "url": "https://www.welt.de"
+            }
+        },
+        {
+            "title": "Spaceship-like disc detects colon cancer with sound-driven droplet vibration",
+            "description": "ASCENDx is a breakthrough in cancer detection. Discover the innovative spaceship-like disc that allows quick and precise tests for cancer.",
+            "content": "In a new study published in Science Advances, the scientists introduced an innovative spaceship-like disc that allows acoustic separation and concentration of exosomes and nucleotide detection, or shortly ASCENDx.\nColorectal cancer starts in the colo... [687 chars]",
+            "url": "https://interestingengineering.com/science/enhancing-colon-cancer-detection-with-sound-driven-droplet-vibration",
+            "image": "https://cms.interestingengineering.com/wp-content/uploads/2024/03/blue-glowing-water-is-being-spun-around-by-nothing-but-sound-waves.jpg",
+            "publishedAt": "2024-03-15T17:43:47Z",
+            "source": {
+                "name": "Interesting Engineering",
+                "url": "https://interestingengineering.com"
+            }
+        },
+        {
+            "title": "Lateral flow tests crafted using chewing gum, recycled fridge parts",
+            "description": "Scientists have found a new way to tackle the plastic waste associated with the manufacturing of lateral flow tests (LFTs).",
+            "content": "Scientists have found a new way to tackle the environmental impact of lateral flow tests (LFTs).\nWith over four billion LFTs produced annually, the use of plastic in their manufacturing presents a significant environmental challenge.\nA team of resear... [259 chars]",
+            "url": "https://interestingengineering.com/science/lateral-flow-tests-crafted-from-chewing-gum-recycled-fridge-parts",
+            "image": "https://cms.interestingengineering.com/wp-content/uploads/2024/03/Prototype_lateral_flow_cassettes_Large_rdax_1013x675_80-2.jpg",
+            "publishedAt": "2024-03-15T16:52:24Z",
+            "source": {
+                "name": "Interesting Engineering",
+                "url": "https://interestingengineering.com"
+            }
+        }
+    ]
+}
+```
+#### Postman test
+The Postman collection is accessible at the project's root directory with the filename `fhf-news-api.postman_collection.json`. Import this collection into your Postman application.
+Below is a sample request/response with postman
+![](postman.png)
+
+### Documentation
+API documentation is available at `http://localhost:8080/swagger-ui.html` when the application is running. You can use Swagger UI to explore and test the API endpoints as well.
+![](swagger.png)
+
+### Suggestions for Improvement
+While the current implementation serves its purpose, there are several areas that can be improved:
+
+- *Security:* Secure all the endpoints using methods such as API keys, OAuth, or JWT authentication.
+- *Request Validation:* Implement more robust request validation to ensure data integrity and prevent malformed requests.
+- *Exception Handling:* Enhance exception handling to provide meaningful error messages and handle unexpected scenarios gracefully.
+- *Caching Strategy:* Consider using a more advanced caching library like Caffeine for improved caching performance and flexibility.
+- *Integration Tests:* Incorporate integration tests to validate the interactions between different components of the system and ensure seamless functionality across various scenarios.
